@@ -1,1 +1,516 @@
+/* ТЁМНАЯ КИНОПЛАТФОРМА */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: #f0f0f0;
+    line-height: 1.6;
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(28, 28, 51, 0.3) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(45, 28, 51, 0.3) 0%, transparent 20%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ШАПКА */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #2a2a3a;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.logo i {
+    font-size: 2.5rem;
+    color: #8a2be2;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #8a2be2, #00bfff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.description {
+    font-size: 0.95rem;
+    color: #888;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* СТАТИСТИКА */
+.stats-section {
+    background: rgba(20, 20, 30, 0.7);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #33334a;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 4px solid #8a2be2;
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.stat-card i {
+    font-size: 2rem;
+    color: #8a2be2;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+/* РАЗДЕЛ С ФИЛЬМАМИ */
+.films-section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    color: #d0d0ff;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h2 i {
+    color: #8a2be2;
+}
+
+/* КОНТЕЙНЕР ФИЛЬМОВ */
+.films-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+/* КАРТОЧКА ФИЛЬМА */
+.film-card {
+    background: rgba(30, 30, 45, 0.9);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #3a3a5a;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.film-card:hover {
+    transform: translateY(-5px);
+    border-color: #8a2be2;
+    box-shadow: 0 15px 30px rgba(138, 43, 226, 0.3);
+}
+
+/* ПОСТЕР ФИЛЬМА */
+.film-poster {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.film-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.film-card:hover .film-poster img {
+    transform: scale(1.05);
+}
+
+/* КНОПКА УДАЛЕНИЯ */
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 50, 50, 0.9);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.film-card:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    background: rgba(255, 50, 50, 1);
+    transform: scale(1.1);
+}
+
+/* ИНФОРМАЦИЯ О ФИЛЬМЕ */
+.film-info {
+    padding: 25px;
+}
+
+.film-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.film-title {
+    flex: 1;
+}
+
+.film-title h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.film-year {
+    font-size: 0.9rem;
+    color: #8a2be2;
+    font-weight: 600;
+    background: rgba(138, 43, 226, 0.1);
+    padding: 4px 12px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.film-rating-badge {
+    background: rgba(0, 191, 255, 0.15);
+    color: #00bfff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.film-rating-badge i {
+    font-size: 0.8rem;
+}
+
+/* ОПИСАНИЕ */
+.film-description {
+    color: #ccc;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    min-height: 80px;
+}
+
+/* РЕЙТИНГ */
+.film-rating {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.rating-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.rating-value {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating-value i {
+    color: gold;
+    font-size: 1.5rem;
+}
+
+.rating-number {
+    font-size: 1.8rem;
+    color: gold;
+    font-weight: 700;
+}
+
+.rating-label {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* ОЦЕНКА ПОЛЬЗОВАТЕЛЯ */
+.user-rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.rate-label {
+    font-size: 0.95rem;
+    color: #d0d0ff;
+}
+
+.stars-container {
+    display: flex;
+    gap: 8px;
+}
+
+.star {
+    font-size: 1.8rem;
+    color: #444;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.star.active {
+    color: gold;
+}
+
+.star.clickable {
+    color: #666;
+}
+
+.star.clickable:hover {
+    color: gold;
+    transform: scale(1.2);
+}
+
+.star.disabled {
+    color: #333;
+    cursor: not-allowed;
+}
+
+/* ЕСЛИ УЖЕ ОЦЕНИЛ */
+.already-rated {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #00b09b;
+    font-size: 0.9rem;
+}
+
+.already-rated i {
+    color: #00b09b;
+}
+
+/* ФОРМА ДОБАВЛЕНИЯ */
+.add-film-section {
+    background: rgba(20, 20, 30, 0.7);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #33334a;
+}
+
+.add-film-form {
+    max-width: 500px;
+    margin-top: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row input {
+    flex: 1;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid #3a3a5a;
+    border-radius: 12px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #8a2be2;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #777;
+}
+
+.add-btn {
+    background: linear-gradient(90deg, #8a2be2, #6a11cb);
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(138, 43, 226, 0.4);
+}
+
+.add-btn:active {
+    transform: translateY(0);
+}
+
+.form-note {
+    text-align: center;
+    margin-top: 15px;
+    color: #888;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* ПОДВАЛ */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid #2a2a3a;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+footer i {
+    margin: 0 5px;
+    color: #8a2be2;
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .films-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .film-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .user-rating {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* АНИМАЦИЯ ПОЯВЛЕНИЯ */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.film-card {
+    animation: fadeIn 0.5s ease-out;
+}
