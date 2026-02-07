@@ -135,13 +135,17 @@ function addFilm() {
     
     // Анимация
     const btn = document.querySelector('.add-btn');
+    const originalHTML = btn.innerHTML;
+    const originalBg = btn.style.background;
+    
     btn.innerHTML = '<i class="fas fa-check"></i> Добавлено!';
     btn.style.background = 'linear-gradient(90deg, #00b09b, #96c93d)';
+    btn.disabled = true;
     
     setTimeout(() => {
-        btn.innerHTML = '<i class="fas fa-plus"></i> Добавить в список';
-        btn.style.
-            background = 'linear-gradient(90deg, #8a2be2, #6a11cb)';
+        btn.innerHTML = originalHTML;
+        btn.style.background = originalBg;
+        btn.disabled = false;
     }, 1500);
 }
 
