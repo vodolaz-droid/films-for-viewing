@@ -1,4 +1,3 @@
-
 // Класс для работы с фильмами
 class MoviePlatform {
     constructor() {
