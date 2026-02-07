@@ -1,4 +1,3 @@
-
 // ФИЛЬМЫ ДЛЯ ПРОСМОТРА - ПОЛНОСТЬЮ РАБОЧАЯ ВЕРСИЯ
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
