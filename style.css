@@ -1,1 +1,119 @@
+/* ТЁМНАЯ ТЕМА ДЛЯ КИНОПЛАТФОРМЫ */
+/* ... предыдущие стили остаются ... */
 
+/* Добавляем новые стили */
+
+/* КНОПКА УДАЛЕНИЯ ФИЛЬМА */
+.delete-film-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.film-poster:hover .delete-film-btn {
+    opacity: 1;
+}
+
+.delete-film-btn:hover {
+    background: rgba(255, 0, 0, 1);
+    transform: scale(1.1);
+}
+
+.delete-film-btn i {
+    font-size: 0.9rem;
+}
+
+/* ПОСТЕР ФИЛЬМА С КНОПКОЙ */
+.film-poster {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* ОТОБРАЖЕНИЕ ОЦЕНКИ ПОЛЬЗОВАТЕЛЯ */
+.user-rating-display {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.user-stars {
+    display: flex;
+    gap: 5px;
+}
+
+.user-star-active {
+    color: gold !important;
+    font-size: 1.8rem;
+}
+
+.user-star-inactive {
+    color: #444 !important;
+    font-size: 1.8rem;
+    opacity: 0.5;
+}
+
+.rating-info-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #00b09b;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.rating-info-text i {
+    color: #00b09b;
+}
+
+.rating-max {
+    color: #aaa;
+    font-size: 1rem;
+}
+
+/* МЕНЯЕМ ЦВЕТ УЖЕ ОЦЕНЕННЫХ ЗВЁЗД */
+.star.disabled {
+    color: #333;
+    cursor: not-allowed;
+}
+
+.star.clickable {
+    color: #666;
+}
+
+.star.clickable:hover {
+    color: gold;
+    transform: scale(1.2);
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 768px) {
+    .delete-film-btn {
+        opacity: 1;
+        top: 5px;
+        right: 5px;
+        width: 28px;
+        height: 28px;
+    }
+    
+    .user-rating-display {
+        align-items: center;
+    }
+}
