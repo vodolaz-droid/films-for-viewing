@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 Фильмы для просмотра</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <h1>Фильмы для просмотра</h1>
+            </div>
+            <p class="subtitle">Тёмная кино-платформа для друзей</p>
+            <p class="description">Каждый друг может анонимно поставить оценку ⭐ Результат — средний рейтинг друзей!</p>
+        </header>
 
+        <main>
+            <section class="films-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-list"></i> Каталог фильмов</h2>
+                    <div class="stats" id="stats">
+                        <!-- Статистика загрузится сюда -->
+                    </div>
+                </div>
+                <div class="films-container" id="films-container">
+                    <!-- Фильмы загрузятся сюда -->
+                </div>
+            </section>
+
+            <section class="add-film">
+                <h2><i class="fas fa-plus-circle"></i> Добавить фильм</h2>
+                <p class="section-note">Рейтинг будет формироваться только из оценок друзей</p>
+                <div class="add-form">
+                    <input type="text" id="film-title" placeholder="Название фильма" required>
+                    
+                    <div class="form-row">
+                        <input type="number" id="film-year" placeholder="Год выпуска" min="1900" max="2030" required>
+                        <input type="text" id="film-image" placeholder="Ссылка на постер (URL)">
+                    </div>
+                    
+                    <textarea id="film-description" placeholder="Описание фильма" rows="3" required></textarea>
+                    
+                    <button onclick="addFilm()" class="add-btn">
+                        <i class="fas fa-plus"></i> Добавить фильм
+                    </button>
+                    
+                    <p class="note">Фильм появится у всех друзей сразу! Они смогут поставить оценку.</p>
+                </div>
+            </section>
+
+            <section class="friends-rating">
+                <h2><i class="fas fa-user-friends"></i> Как работает рейтинг</h2>
+                <div class="rating-info">
+                    <div class="info-card">
+                        <i class="fas fa-user-secret"></i>
+                        <h3>Анонимные оценки</h3>
+                        <p>Друзья ставят оценки анонимно. Нельзя узнать, кто какую оценку поставил.</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-calculator"></i>
+                        <h3>Средний балл</h3>
+                        <p>Рейтинг = среднее арифметическое всех оценок друзей.</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Обновляется в реальном времени</h3>
+                        <p>Как только друг ставит оценку — рейтинг сразу пересчитывается для всех.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p><i class="fas fa-sync-alt"></i> Обновляется в реальном времени • <i class="fas fa-user-secret"></i> Только оценки друзей • <i class="fas fa-moon"></i> Тёмная тема</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
