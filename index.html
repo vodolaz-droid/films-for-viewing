@@ -1,1 +1,90 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тёмная кино-платформа для друзей</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Фильмы для просмотра</h1>
+        <p class="subtitle">Тёмная кино-платформа для друзей</p>
+        <p class="subtitle">Любой может зайти по ссылке, посмотреть список и анонимно поставить оценку ★ (один раз в день)</p>
+    </header>
+
+    <div class="stats">
+        <div class="stat-box">
+            <span id="movies-count" class="stat-number">0</span>
+            <span class="stat-label">Фильмов</span>
+        </div>
+        <div class="stat-box">
+            <span id="average-rating" class="stat-number">0.0</span>
+            <span class="stat-label">Средний рейтинг</span>
+        </div>
+        <div class="stat-box">
+            <span id="total-ratings" class="stat-number">0</span>
+            <span class="stat-label">Всего оценок</span>
+        </div>
+    </div>
+
+    <main>
+        <h2>Каталог фильмов</h2>
+        
+        <div class="form-section">
+            <h3>Добавить фильм</h3>
+            <form id="add-movie-form">
+                <div class="form-group">
+                    <label for="title">Название фильма *</label>
+                    <input type="text" id="title" name="title" required placeholder="Например: Интерстеллар">
+                </div>
+                
+                <div class="form-group">
+                    <label for="year">Год выпуска *</label>
+                    <input type="number" id="year" name="year" min="1900" max="2025" required placeholder="Например: 2014">
+                </div>
+                
+                <div class="form-group">
+                    <label for="poster">Ссылка на постер (URL) *</label>
+                    <input type="url" id="poster" name="poster" required placeholder="https://example.com/poster.jpg">
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Краткое описание (без спойлеров) *</label>
+                    <textarea id="description" name="description" required placeholder="Краткое описание сюжета без спойлеров..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Добавить фильм</button>
+            </form>
+        </div>
+
+        <div class="sync-section">
+            <h3>📲 Синхронизация между устройствами</h3>
+            <p class="sync-info">
+                Экспортируйте данные на компьютере, затем импортируйте файл на телефоне.
+                Так все ваши фильмы будут на всех устройствах!
+            </p>
+            
+            <div class="sync-buttons">
+                <button id="export-btn" class="export-btn">
+                    📥 Экспорт данных
+                </button>
+                
+                <button id="import-btn" class="import-btn">
+                    📤 Импорт данных
+                </button>
+                
+                <input type="file" id="import-file" accept=".json" style="display: none;">
+            </div>
+        </div>
+
+        <div id="movies-container" class="movies-grid">
+            <!-- Фильмы будут добавляться здесь -->
+            <div class="empty-state">Загрузка фильмов...</div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
