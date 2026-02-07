@@ -1,188 +1,261 @@
-// ФИЛЬМЫ ДЛЯ ПРОСМОТРА - JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    loadFilms();
-    updateStats();
-});
+/* ТЁМНАЯ ТЕМА ДЛЯ КИНОПЛАТФОРМЫ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-// БАЗА ФИЛЬМОВ (можно менять и добавлять!)
-let films = [
-    {
-        id: 1,
-        title: "Дивергент",
-        year: 2014,
-        description: "В постапокалиптическом Чикаго общество разделено на пять фракций. Беатрис должна выбрать свою судьбу, но оказывается, что она не вписывается ни в одну группу — она Дивергент.",
-        rating: 4.2,
-        votes: 42
-    },
-    {
-        id: 2,
-        title: "Интерстеллар",
-        year: 2014,
-        description: "Группа исследователей путешествует через червоточину в космосе в поисках нового дома для человечества.",
-        rating: 4.8,
-        votes: 56
-    },
-    {
-        id: 3,
-        title: "Начало",
-        year: 2010,
-        description: "Вор, который крадет секреты через сны, получает задание внедрить идею в подсознание цели.",
-        rating: 4.5,
-        votes: 38
-    },
-    {
-        id: 4,
-        title: "Паразиты",
-        year: 2019,
-        description: "Бедная семья хитростью устраивается на работу к богатым, но их ждут неожиданные повороты судьбы.",
-        rating: 4.7,
-        votes: 47
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: #f0f0f0;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ШАПКА */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #2a2a3a;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.logo i {
+    font-size: 2.5rem;
+    color: #8a2be2;
+}
+
+h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.8rem;
+    background: linear-gradient(90deg, #8a2be2, #00bfff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 1rem;
+    color: #888;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* РАЗДЕЛ С ФИЛЬМАМИ */
+.films-section {
+    background: rgba(20, 20, 30, 0.7);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #33334a;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    color: #d0d0ff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats {
+    background: rgba(138, 43, 226, 0.15);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+/* КОНТЕЙНЕР ФИЛЬМОВ */
+.films-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* КАРТОЧКА ФИЛЬМА */
+.film-card {
+    background: rgba(30, 30, 45, 0.9);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid #3a3a5a;
+    transition: all 0.3s ease;
+}
+
+.film-card:hover {
+    transform: translateY(-5px);
+    border-color: #8a2be2;
+    box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+}
+
+.film-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.year {
+    font-size: 0.9rem;
+    color: #aaa;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 10px;
+    border-radius: 15px;
+}
+
+.film-description {
+    color: #ccc;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* РЕЙТИНГ */
+.rating {
+    margin: 20px 0;
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.star {
+    font-size: 1.8rem;
+    color: #444;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star:hover,
+.star.active {
+    color: gold;
+}
+
+.rating-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* ДОБАВЛЕНИЕ ФИЛЬМА */
+.add-film {
+    background: rgba(20, 20, 30, 0.7);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px dashed #3a3a5a;
+}
+
+.add-form {
+    max-width: 500px;
+    margin-top: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #3a3a5a;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #8a2be2;
+}
+
+.add-btn {
+    background: linear-gradient(90deg, #8a2be2, #6a11cb);
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.add-btn:hover {
+    transform: scale(1.02);
+}
+
+.note {
+    text-align: center;
+    margin-top: 15px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* ПОДВАЛ */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid #2a2a3a;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
     }
-];
-
-// ЗАГРУЗКА ФИЛЬМОВ НА СТРАНИЦУ
-function loadFilms() {
-    const container = document.getElementById('films-container');
-    container.innerHTML = '';
     
-    films.forEach(film => {
-        const filmElement = document.createElement('div');
-        filmElement.className = 'film-card';
-        filmElement.innerHTML = `
-            <div class="film-title">
-                <span>${film.title}</span>
-                <span class="year">${film.year}</span>
-            </div>
-            <p class="film-description">${film.description}</p>
-            <div class="rating">
-                <div class="stars" data-film-id="${film.id}">
-                    ${generateStars(film.id, film.rating)}
-                </div>
-                <div class="rating-info">
-                    <span>Рейтинг: <strong>${film.rating.toFixed(1)}</strong>/5.0</span>
-                    <span>Оценок: ${film.votes}</span>
-                </div>
-            </div>
-        `;
-        container.appendChild(filmElement);
-    });
-    
-    // Добавляем обработчики для звёзд
-    document.querySelectorAll('.star').forEach(star => {
-        star.addEventListener('click', function() {
-            const filmId = parseInt(this.parentElement.dataset.filmId);
-            const rating = parseInt(this.dataset.value);
-            rateFilm(filmId, rating);
-        });
-    });
-}
-
-// ГЕНЕРАЦИЯ ЗВЁЗД РЕЙТИНГА
-function generateStars(filmId, currentRating) {
-    let starsHTML = '';
-    for (let i = 1; i <= 5; i++) {
-        const isActive = i <= Math.round(currentRating);
-        starsHTML += `<i class="fas fa-star star ${isActive ? 'active' : ''}" data-value="${i}"></i>`;
-    }
-    return starsHTML;
-}
-
-// ОЦЕНКА ФИЛЬМА
-function rateFilm(filmId, rating) {
-    const film = films.find(f => f.id === filmId);
-    if (!film) return;
-    
-    // Пересчитываем рейтинг
-    const totalScore = film.rating * film.votes;
-    film.votes++;
-    film.rating = (totalScore + rating) / film.votes;
-    
-    // Обновляем отображение
-    loadFilms();
-    updateStats();
-    
-    // Сохраняем в localStorage (чтобы оценки не сбрасывались)
-    saveToLocalStorage();
-    
-    // Анимация
-    const stars = document.querySelector(`[data-film-id="${filmId}"]`);
-    stars.classList.add('pulse');
-    setTimeout(() => stars.classList.remove('pulse'), 300);
-}
-
-// ДОБАВЛЕНИЕ НОВОГО ФИЛЬМА
-function addFilm() {
-    const titleInput = document.getElementById('film-title');
-    const descInput = document.getElementById('film-description');
-    
-    const title = titleInput.value.trim();
-    const description = descInput.value.trim();
-    
-    if (!title || !description) {
-        alert('Введите название и описание фильма!');
-        return;
+    .films-container {
+        grid-template-columns: 1fr;
     }
     
-    // Создаём новый фильм
-    const newFilm = {
-        id: films.length + 1,
-        title: title,
-        year: new Date().getFullYear(),
-        description: description,
-        rating: 0,
-        votes: 0
-    };
-    
-    films.push(newFilm);
-    
-    // Очищаем поля
-    titleInput.value = '';
-    descInput.value = '';
-    
-    // Обновляем страницу
-    loadFilms();
-    updateStats();
-    saveToLocalStorage();
-    
-    // Анимация успеха
-    const addBtn = document.querySelector('.add-btn');
-    addBtn.innerHTML = '<i class="fas fa-check"></i> Фильм добавлен!';
-    addBtn.style.background = 'linear-gradient(90deg, #00b09b, #96c93d)';
-    
-    setTimeout(() => {
-        addBtn.innerHTML = '<i class="fas fa-plus"></i> Добавить в список';
-        addBtn.style.background = 'linear-gradient(90deg, #8a2be2, #6a11cb)';
-    }, 2000);
-}
-
-// ОБНОВЛЕНИЕ СТАТИСТИКИ
-function updateStats() {
-    const statsElement = document.getElementById('stats');
-    const totalFilms = films.length;
-    const totalVotes = films.reduce((sum, film) => sum + film.votes, 0);
-    const avgRating = films.length > 0 
-        ? (films.reduce((sum, film) => sum + film.rating, 0) / films.length).toFixed(1)
-        : 0;
-    
-    statsElement.innerHTML = `
-        <span><i class="fas fa-film"></i> Фильмов: ${totalFilms}</span> •
-        <span><i class="fas fa-star"></i> Средний рейтинг: ${avgRating}</span> •
-        <span><i class="fas fa-vote-yea"></i> Всего оценок: ${totalVotes}</span>
-    `;
-}
-
-// СОХРАНЕНИЕ В LOCALSTORAGE
-function saveToLocalStorage() {
-    localStorage.setItem('films-for-viewing', JSON.stringify(films));
-}
-
-// ЗАГРУЗКА ИЗ LOCALSTORAGE (при перезагрузке страницы)
-function loadFromLocalStorage() {
-    const saved = localStorage.getItem('films-for-viewing');
-    if (saved) {
-        films = JSON.parse(saved);
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
-
-// Инициализация
-loadFromLocalStorage();
