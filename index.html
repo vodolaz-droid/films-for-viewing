@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 Фильмы для просмотра</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <h1>Фильмы для просмотра</h1>
+            </div>
+            <p class="subtitle">Тёмная кино-платформа для друзей</p>
+            <p class="description">Любой может зайти по ссылке, посмотреть список и анонимно поставить оценку ⭐</p>
+        </header>
 
+        <main>
+            <section class="films-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-list"></i> Каталог фильмов</h2>
+                    <div class="stats" id="stats">
+                        <!-- Статистика загрузится сюда -->
+                    </div>
+                </div>
+                <div class="films-container" id="films-container">
+                    <!-- Фильмы загрузятся сюда -->
+                </div>
+            </section>
+
+            <section class="add-film">
+                <h2><i class="fas fa-plus-circle"></i> Добавить фильм</h2>
+                <div class="add-form">
+                    <input type="text" id="film-title" placeholder="Название фильма" required>
+                    
+                    <!-- ДОБАВЛЕННЫЕ ПОЛЯ -->
+                    <div class="form-row">
+                        <input type="number" id="film-year" placeholder="Год выпуска" min="1900" max="2030" required>
+                        <input type="number" id="film-rating" placeholder="Начальный рейтинг (0-5)" step="0.1" min="0" max="5">
+                    </div>
+                    
+                    <input type="text" id="film-image" placeholder="Ссылка на постер (URL изображения)">
+                    <textarea id="film-description" placeholder="Описание без спойлеров" rows="3" required></textarea>
+                    
+                    <button onclick="addFilm()" class="add-btn">
+                        <i class="fas fa-plus"></i> Добавить в список
+                    </button>
+                    
+                    <!-- КНОПКА ДЛЯ ИСПРАВЛЕНИЯ СТАРЫХ ФИЛЬМОВ (можно удалить после использования) -->
+                    <button onclick="fixFilmYears()" class="fix-btn" style="margin-top: 10px;">
+                        <i class="fas fa-wrench"></i> Исправить года выпуска
+                    </button>
+                    
+                    <p class="note">Фильм добавится сразу для всех друзей!</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p><i class="fas fa-sync-alt"></i> Обновляется в реальном времени • <i class="fas fa-user-secret"></i> Оценки анонимны • <i class="fas fa-moon"></i> Тёмная тема</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
